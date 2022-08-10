@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MovieDetail } from 'src/app/models/movie-detail.model';
+import { MovieDetailResponse } from 'src/app/models/movie-detail-response.model';
 import { TheMovieDbService } from 'src/app/services/theMovieDb.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { TheMovieDbService } from 'src/app/services/theMovieDb.service';
   styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
-  detail: MovieDetail;
+  detail: MovieDetailResponse;
 
   constructor(
     private route: ActivatedRoute,

@@ -1,4 +1,4 @@
-export interface MovieDetail {
+export interface MovieDetailResponse {
   adult: boolean
   backdrop_path: string
   belongs_to_collection: any
@@ -6,7 +6,6 @@ export interface MovieDetail {
   genres: Array<Genres>
   homepage: string
   id: number
-  imageUrl: string
   imdb_id: string
   original_language: string
   original_title: string
@@ -25,6 +24,7 @@ export interface MovieDetail {
   video: boolean
   vote_average: number
   vote_count: number
+  imageUrl?: string
 }
 
 export interface ProductionCountries {
