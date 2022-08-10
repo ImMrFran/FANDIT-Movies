@@ -1,1 +1,10 @@
-<p>header works!</p>
+<nav class="navbar navbar-dark custom-nav">
+  <div class="container">
+    <a class="navbar-brand logo">FANDIT Movies</a>
+    <mat-form-field appearance="outline" class="custom-form-field">
+      <mat-label>Buscar</mat-label>
+      <input matInput placeholder="Avatar" (input)="updateSearch($event)">
+      <mat-icon matSuffix fontIcon="search"></mat-icon>
+    </mat-form-field>
+  </div>
+</nav>

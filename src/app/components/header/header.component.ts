@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TheMovieDbService } from 'src/app/services/theMovieDb.service';
 
 @Component({
@@ -6,21 +7,12 @@ import { TheMovieDbService } from 'src/app/services/theMovieDb.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
-  seach = null;
+export class HeaderComponent {
 
-  constructor(private theMovieDbService: TheMovieDbService) {}
+  constructor(private theMovieDbService: TheMovieDbService, private router: Router) {}
 
-  ngOnInit(): void {
-    this.theMovieDbService.seachMovie('Batman').subscribe((response) => {
-      console.log('-HEADER-', response);
-
-      if (!response) {
-        // mostrar loading
-      } else {
-        this.seach = response;
-        // ocultar loading
-      }
-    });
+  updateSearch(input: any) {
+    this.router.navigate(['/movies'])
+    this.theMovieDbService.searchEmitter.emit(input.target.value)
   }
 }

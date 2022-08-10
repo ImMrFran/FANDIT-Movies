@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/models/movies-response.model';
 import { TheMovieDbService } from 'src/app/services/theMovieDb.service';
 
@@ -8,27 +9,61 @@ import { TheMovieDbService } from 'src/app/services/theMovieDb.service';
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss'],
 })
-export class MoviesComponent implements OnInit {
-  page: number;
+export class MoviesComponent implements OnInit, OnDestroy {
+
+  loading: boolean = true;
   maxpage: number;
   movies: Array<Movie> = [];
+  searchSubscription: Subscription;
 
   constructor(public theMovieDbService: TheMovieDbService) {}
 
   ngOnInit(): void {
-    this.page = 1;
-    this.loadMovies(this.page);
+    this.loadPage(this.theMovieDbService.page);
+
+    this.searchSubscription = this.theMovieDbService.searchEmitter.subscribe(
+      (search) => {
+        console.log('-search-', search);
+        this.loadPage(1);
+      }
+    );
   }
 
-  public loadMovies(page: number) {
-    this.page = page;
-    this.movies = [];
-    this.theMovieDbService.getMovies(page).subscribe((response) => {
-      console.log('-MOVIES-', response);
+  ngOnDestroy(): void {
+    this.searchSubscription.unsubscribe();
+  }
 
-      if (!response) {
-        // mostrar loading
-      } else {
+  public loadPage(page: number) {
+    this.loading = true;
+    this.theMovieDbService.page = page;
+    this.movies = [];
+
+    if (this.theMovieDbService.search) {
+      this.searchMovies();
+    } else {
+      this.loadMovies();
+    }
+  }
+
+  public loadMovies() {
+    this.theMovieDbService.getMovies(this.theMovieDbService.page).subscribe((response) => {
+      console.log('-MOVIES-', response);
+      this.maxpage = response.total_pages;
+      response.results.forEach((movie) => {
+        movie.imageUrl = movie.poster_path
+          ? this.theMovieDbService.getImageUrl(movie.poster_path)
+          : '';
+      });
+      this.movies = response.results;
+      this.loading = false;
+    });
+  }
+
+  public searchMovies() {
+    this.theMovieDbService
+      .seachMovie(this.theMovieDbService.page, this.theMovieDbService.search)
+      .subscribe((response) => {
+        console.log('-SEARCH MOVIES-', response);
         this.maxpage = response.total_pages;
         response.results.forEach((movie) => {
           movie.imageUrl = movie.poster_path
@@ -36,12 +71,15 @@ export class MoviesComponent implements OnInit {
             : '';
         });
         this.movies = response.results;
-        // ocultar loading
-      }
-    });
+        this.loading = false;
+      });
   }
 
   public goDetail(id: number) {
     console.log('CLICCKk');
+  }
+
+  public getPage() {
+    return this.theMovieDbService.page
   }
 }

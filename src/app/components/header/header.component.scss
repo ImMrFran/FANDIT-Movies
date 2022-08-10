@@ -1,0 +1,19 @@
+.mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: white !important;
+ }
+
+.custom-form-field {
+  margin-bottom: -1.25em
+}
+
+.custom-nav {
+  background: linear-gradient(140deg, rgb(141 70 255) 40%, rgba(255, 255, 255, 0.2) 60%); //3f51b5
+  margin-bottom: 3rem;
+  box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.4);
+}
+
+.logo {
+  font-weight: bold;
+  font-size: xx-large;
+}
