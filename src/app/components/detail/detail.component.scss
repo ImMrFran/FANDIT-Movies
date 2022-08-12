@@ -1,0 +1,25 @@
+@import "../../../variables.scss";
+
+img {
+  width: -webkit-fill-available;
+  border-radius: 2rem;
+}
+
+li {
+  background: none;
+}
+
+div>ul>li>div:nth-child(1) {
+  font-weight: bold;
+}
+
+div>ul>li>div:nth-child(2) {
+  padding: 8px 16px;
+}
+
+.title {
+  font-size: x-large;
+  font-weight: bold;
+  padding: 15px 25px;
+  background: linear-gradient(140deg, rgba(149, 149, 149, 0.3) 40%, rgba(0, 0, 0, 0) 60%);
+}

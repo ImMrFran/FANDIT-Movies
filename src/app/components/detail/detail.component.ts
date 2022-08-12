@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { MovieDetailResponse } from 'src/app/models/movie-detail-response.model';
 import { TheMovieDbService } from 'src/app/services/theMovieDb.service';
+import { Utils } from 'src/app/utils/utils.static';
 
 @Component({
   selector: 'detail',
@@ -25,6 +26,13 @@ export class DetailComponent implements OnInit {
         response.imageUrl = response.poster_path
           ? this.theMovieDbService.getImageUrl(response.poster_path)
           : '';
+        response.status = Utils.translateStatus(response.status);
+        response.original_language = Utils.getLanguageFromIso(
+          response.original_language
+        );
+        response.spoken_languages.forEach((language) => {
+          language.name = Utils.getLanguageFromIso(language.iso_639_1);
+        });
         console.log('-DETAIL-', response);
         this.detail = response;
 

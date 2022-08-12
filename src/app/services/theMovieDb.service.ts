@@ -11,21 +11,13 @@ import { Movie, MoviesResponse } from '../models/movies-response.model';
 export class TheMovieDbService {
 
   // #region PROPERTIES
-  searchEmitter: EventEmitter<string> = new EventEmitter<string>()
-  search: string
-  page: number = 1
 
   private readonly baseUrl = 'https://api.themoviedb.org/3';
   private readonly imagesUrl = 'https://image.tmdb.org/t/p';
 
   // #endregion
 
-  constructor(private http: HttpClient) {
-    this.searchEmitter.subscribe(search => {
-      this.page = 1
-      this.search = search
-    })
-  }
+  constructor(private http: HttpClient) { }
 
   // #region PUBLIC METHODS
 
@@ -36,7 +28,6 @@ export class TheMovieDbService {
       .append('api_key', '' + environment.key)
       .append('sort_by', 'release_date.desc')
       .append('language', 'es-ES')
-      .append('include_image_language', 'en')
       .append('page', page);
 
     return this.http.get<MoviesResponse>(url, { params: params });

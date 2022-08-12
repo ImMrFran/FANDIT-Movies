@@ -1,2 +1,69 @@
-<p>detail works!</p>
-<img *ngIf="detail" [src]="detail.imageUrl">
+<div *ngIf="detail" class="container" style="padding-bottom: 3rem;">
+  <div class="row">
+    <div class="col-sm-12 col-md-4">
+      <button mat-stroked-button routerLink="/movies">
+        <mat-icon fontIcon="keyboard_backspace"></mat-icon>
+      </button>
+      <img style="padding-top: 1rem;" [src]="detail.imageUrl ? detail.imageUrl : 'https://barcelona.lecool.com/files/2016/02/no-image-available.jpg'">
+    </div>
+
+    <div class="col-sm-12 col-md-8">
+      <div style="margin: 2rem;">
+        <div class="title" style="margin: 1rem;">{{detail.title}}</div>
+        <ul class="list-group list-group-flush">
+          <li *ngIf="detail.overview" class="list-group-item">
+            <div>VISIÓN GENERAL</div>
+            <div>{{detail.overview}}</div>
+          </li>
+          <li class="list-group-item">
+            <div>TITULO ORIGINAL</div>
+            <div>{{detail.original_title}}</div>
+          </li>
+          <li class="list-group-item">
+            <div>FECHA DE ESTRENO</div>
+            <div>{{detail.release_date | date}}</div>
+          </li>
+          <li class="list-group-item">
+            <div>GENEROS</div>
+
+            <ul class="list-group list-group-flush">
+              <li *ngFor="let genre of detail.genres" class="list-group-item">
+                <div>{{genre.name}}</div>
+              </li>
+            </ul>
+          </li>
+          <li class="list-group-item">
+            <div>COMPAÑIAS ASOCIADAS</div>
+
+            <ul class="list-group list-group-flush">
+              <li *ngFor="let company of detail.production_companies" class="list-group-item">
+                <div>{{company.name}}</div>
+              </li>
+            </ul>
+          </li>
+          <li class="list-group-item">
+            <div>ESTADO</div>
+            <div>{{detail.status}}</div>
+          </li>
+          <li class="list-group-item">
+            <div>IDIOMAS</div>
+
+            <ul class="list-group list-group-flush">
+              <li *ngFor="let language of detail.spoken_languages" class="list-group-item">
+                <div>{{language.name}}</div>
+              </li>
+            </ul>
+          </li>
+          <li class="list-group-item">
+            <div>IDIOMA ORIGINAL</div>
+            <div>{{detail.original_language}}</div>
+          </li>
+          <li class="list-group-item">
+            <div>VALORACION</div>
+            <div>{{detail.vote_count > 0 ? detail.vote_average + ' / 10' : 'Sin valorar'}}</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

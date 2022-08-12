@@ -5,7 +5,6 @@ export interface MoviesResponse {
   total_results: number
 }
 
-
 export interface Movie {
   adult: false
   backdrop_path: string

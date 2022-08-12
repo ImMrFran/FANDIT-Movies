@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TheMovieDbService } from 'src/app/services/theMovieDb.service';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'header',
@@ -8,11 +8,10 @@ import { TheMovieDbService } from 'src/app/services/theMovieDb.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-
-  constructor(private theMovieDbService: TheMovieDbService, private router: Router) {}
+  constructor(private searchService: SearchService, private router: Router) {}
 
   updateSearch(input: any) {
-    this.router.navigate(['/movies'])
-    this.theMovieDbService.searchEmitter.emit(input.target.value)
+    this.router.navigate(['/movies']);
+    this.searchService.searchEmitter.emit(input.target.value);
   }
 }

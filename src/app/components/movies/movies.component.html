@@ -1,6 +1,6 @@
 <div *ngIf="!loading" class="container">
   <div class="row">
-    <div *ngFor="let movie of movies" class="col-12 col-sm-6 col-md-3">
+    <div *ngFor="let movie of movies" class="col-12 col-sm-6 col-lg-3">
       <div class="card h-100 w-100" [routerLink]="'/detail/'+movie.id">
         <img [src]="movie.imageUrl ? movie.imageUrl : 'https://barcelona.lecool.com/files/2016/02/no-image-available.jpg'">
         <h2>{{movie.title}}</h2>
