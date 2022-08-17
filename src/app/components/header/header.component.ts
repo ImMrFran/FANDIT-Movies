@@ -8,7 +8,7 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  expanded: any = false;
+  expanded: string = 'search';
 
   constructor(private searchService: SearchService, private router: Router) {}
 
@@ -18,8 +18,6 @@ export class HeaderComponent {
   }
 
   clickBtn() {
-    this.expanded = document
-      .getElementById('btnCollapse')
-      ?.getAttribute('aria-expanded');
+    this.expanded = document.getElementById('btnCollapse')?.getAttribute('aria-expanded') == 'true' ? 'close' : 'search';
   }
 }

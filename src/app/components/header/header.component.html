@@ -1,13 +1,12 @@
 <nav class="navbar navbar-expand-md custom-nav">
   <div class="container">
-
-    <a class="navbar-brand logo" routerLink="[/movies]">
-      FANDIT MOVIES
+    <a class="navbar-brand" routerLink="[/movies]">
+      <img src="assets/logo.png" height="30">
     </a>
-    <button id="btnCollapse" class="navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
-      aria-label="Toggle navigation" (click)="clickBtn()">
-      <span class="navbar-toggler-icon"></span>
+
+    <button mat-icon-button class="navbar-toggler" id="btnCollapse" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" (click)="clickBtn()">
+      <mat-icon>{{expanded}}</mat-icon>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarCollapse">

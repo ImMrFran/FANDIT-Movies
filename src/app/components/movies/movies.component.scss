@@ -1,3 +1,5 @@
+@import "../../../styles.scss";
+
 .row>* {
   padding: calc(var(--bs-gutter-x) * .5);
 }
@@ -26,7 +28,7 @@
   font-weight: bold;
   color: #FFF;
   padding: 15px 20px;
-  background: linear-gradient(140deg, rgba(0, 0, 0, 0.5) 40%, rgba(255, 255, 255, 0.1) 60%);
+  background: linear-gradient(140deg, rgba(32, 32, 32, 0.5) 40%, rgba(255, 255, 255, 0) 60%);
   transition: all 0.15s linear;
 }
 
@@ -37,4 +39,27 @@
 
 li {
   cursor: pointer;
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: .5rem .75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: black;
+  background-color: $primary-color;
+  border: none;
+}
+
+.page-link:hover {
+  z-index: 2;
+  background-color: rgb(184, 139, 255);
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: $primary-color;
+  background-color: black;
+  border: solid 2px black;
 }
