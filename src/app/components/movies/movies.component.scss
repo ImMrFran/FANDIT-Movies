@@ -8,24 +8,25 @@
   cursor: pointer;
 }
 
-.card > img {
+.card>img {
   border-radius: inherit;
   height: inherit;
+  // object-fit: cover;
   transition: all 0.15s linear;
 }
 
-.card:hover > img {
+.card:hover>img {
   filter: brightness(80%);
 }
 
-.card > h2 {
+.card>h2 {
   position: absolute;
   width: inherit;
   top: 8%;
   font-weight: bold;
   color: #FFF;
   padding: 15px 20px;
-  background: linear-gradient(140deg, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0.2) 60%);
+  background: linear-gradient(140deg, rgba(0, 0, 0, 0.5) 40%, rgba(255, 255, 255, 0.1) 60%);
   transition: all 0.15s linear;
 }
 

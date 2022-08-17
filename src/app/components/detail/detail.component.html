@@ -1,4 +1,4 @@
-<div *ngIf="detail" class="container" style="padding-bottom: 3rem;">
+<div *ngIf="!loading; else spinner" class="container" style="padding-bottom: 3rem;">
   <div class="row">
     <div class="col-sm-12 col-md-4">
       <button mat-stroked-button routerLink="/movies">
@@ -67,3 +67,13 @@
     </div>
   </div>
 </div>
+
+<ng-template #spinner>
+  <div class="full-center">
+    <div class="lds-ripple">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</ng-template>

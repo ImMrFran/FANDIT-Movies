@@ -1,10 +1,23 @@
-<nav class="navbar navbar-dark custom-nav">
+<nav class="navbar navbar-expand-md custom-nav">
   <div class="container">
-    <span class="navbar-brand logo" routerLink="[/movies]"><img src="assets/movie.png" style="width: 8%;">FANDIT Movies</span>
-    <mat-form-field appearance="outline" class="custom-form-field">
-      <mat-label>Buscar</mat-label>
-      <input matInput placeholder="Avatar" (input)="updateSearch($event)">
-      <mat-icon matSuffix fontIcon="search"></mat-icon>
-    </mat-form-field>
+
+    <a class="navbar-brand logo" routerLink="[/movies]">
+      FANDIT MOVIES
+    </a>
+    <button id="btnCollapse" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+      aria-label="Toggle navigation" (click)="clickBtn()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+      </ul>
+      <mat-form-field appearance="outline" class="custom-form-field">
+        <mat-label>Buscar</mat-label>
+        <input matInput placeholder="Avatar" (input)="updateSearch($event)">
+        <mat-icon matSuffix fontIcon="search"></mat-icon>
+      </mat-form-field>
+    </div>
   </div>
 </nav>

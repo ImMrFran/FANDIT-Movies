@@ -10,6 +10,7 @@ import { Utils } from 'src/app/utils/utils.static';
   styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
+  loading: boolean = true;
   detail: MovieDetailResponse;
 
   constructor(
@@ -18,26 +19,22 @@ export class DetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loading = true;
     let id = this.route.snapshot.paramMap.get('id') ?? '';
     this.theMovieDbService.getMovieDetail(id).subscribe((response) => {
-      if (!response) {
-        // mostrar loading
-      } else {
-        response.imageUrl = response.poster_path
-          ? this.theMovieDbService.getImageUrl(response.poster_path)
-          : '';
-        response.status = Utils.translateStatus(response.status);
-        response.original_language = Utils.getLanguageFromIso(
-          response.original_language
-        );
-        response.spoken_languages.forEach((language) => {
-          language.name = Utils.getLanguageFromIso(language.iso_639_1);
-        });
-        console.log('-DETAIL-', response);
-        this.detail = response;
-
-        // ocultar loading
-      }
+      response.imageUrl = response.poster_path
+        ? this.theMovieDbService.getImageUrl(response.poster_path)
+        : '';
+      response.status = Utils.translateStatus(response.status);
+      response.original_language = Utils.getLanguageFromIso(
+        response.original_language
+      );
+      response.spoken_languages.forEach((language) => {
+        language.name = Utils.getLanguageFromIso(language.iso_639_1);
+      });
+      console.log('-DETAIL-', response);
+      this.detail = response;
+      this.loading = false;
     });
   }
 }

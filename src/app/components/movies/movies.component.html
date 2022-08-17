@@ -1,8 +1,9 @@
-<div *ngIf="!loading" class="container">
+<div *ngIf="!loading; else spinner" class="container">
   <div class="row">
     <div *ngFor="let movie of movies" class="col-12 col-sm-6 col-lg-3">
       <div class="card h-100 w-100" [routerLink]="'/detail/'+movie.id">
-        <img [src]="movie.imageUrl ? movie.imageUrl : 'https://barcelona.lecool.com/files/2016/02/no-image-available.jpg'">
+        <img
+          [src]="movie.imageUrl ? movie.imageUrl : 'https://barcelona.lecool.com/files/2016/02/no-image-available.jpg'">
         <h2>{{movie.title}}</h2>
       </div>
     </div>
@@ -15,9 +16,11 @@
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
-      <li *ngIf="getPage() > 1" class="page-item"><a class="page-link"(click)=" loadPage(getPage()-1)">{{getPage()-1}}</a></li>
+      <li *ngIf="getPage() > 1" class="page-item"><a class="page-link"
+          (click)=" loadPage(getPage()-1)">{{getPage()-1}}</a></li>
       <li class="page-item active"><a class="page-link" (click)="loadPage(getPage())">{{getPage()}}</a></li>
-      <li *ngIf="getPage() < maxpage" class="page-item"><a class="page-link" (click)="loadPage(getPage()+1)">{{getPage()+1}}</a></li>
+      <li *ngIf="getPage() < maxpage" class="page-item"><a class="page-link"
+          (click)="loadPage(getPage()+1)">{{getPage()+1}}</a></li>
       <li class="page-item" [ngClass]="getPage() == maxpage?'disabled':''">
         <a class="page-link" (click)="loadPage(maxpage)" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
@@ -28,3 +31,12 @@
 </div>
 
 
+<ng-template #spinner>
+  <div class="full-center">
+    <div class="lds-ripple">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</ng-template>
