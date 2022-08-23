@@ -18,7 +18,7 @@ export class MoviesComponent implements OnInit, OnDestroy {
 
   constructor(
     private theMovieDbService: TheMovieDbService,
-    private searchService: SearchService
+    public searchService: SearchService
   ) {}
 
   ngOnInit(): void {

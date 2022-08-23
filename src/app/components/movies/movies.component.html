@@ -1,34 +1,39 @@
 <div *ngIf="!loading; else spinner" class="container">
+  <div *ngIf="movies.length > 0; else noResults">
   <div class="row">
     <div *ngFor="let movie of movies" class="col-12 col-sm-6 col-lg-3">
       <div class="card h-100 w-100" [routerLink]="'/detail/'+movie.id">
-        <img
-          [src]="movie.imageUrl ? movie.imageUrl : 'assets/no-disponible.png'">
+        <img [src]="movie.imageUrl ? movie.imageUrl : 'assets/no-disponible.png'">
         <h2>{{movie.title}}</h2>
       </div>
     </div>
   </div>
 
-    <nav style="padding: 3%;">
-      <ul class="pagination" style="align-items: center; justify-content: center;">
-        <li *ngIf="getPage() > 1" class="page-item">
-          <a class="page-link" (click)="loadPage(1)" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li *ngIf="getPage() > 1" class="page-item"><a class="page-link"
-            (click)=" loadPage(getPage()-1)">{{getPage()-1}}</a></li>
-        <li class="page-item active"><a class="page-link" (click)="loadPage(getPage())">{{getPage()}}</a></li>
-        <li *ngIf="getPage() < maxpage" class="page-item"><a class="page-link"
-            (click)="loadPage(getPage()+1)">{{getPage()+1}}</a></li>
-        <li *ngIf="getPage() < maxpage" class="page-item">
-          <a class="page-link" (click)="loadPage(maxpage)" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+  <nav style="padding-top: 3%;">
+    <ul class="pagination" style="align-items: center; justify-content: center;">
+      <li *ngIf="getPage() > 1" class="page-item">
+        <a class="page-link" (click)="loadPage(1)" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li *ngIf="getPage() > 1" class="page-item"><a class="page-link"
+          (click)=" loadPage(getPage()-1)">{{getPage()-1}}</a></li>
+      <li class="page-item active"><a class="page-link" (click)="loadPage(getPage())">{{getPage()}}</a></li>
+      <li *ngIf="getPage() < maxpage" class="page-item"><a class="page-link"
+          (click)="loadPage(getPage()+1)">{{getPage()+1}}</a></li>
+      <li *ngIf="getPage() < maxpage" class="page-item">
+        <a class="page-link" (click)="loadPage(maxpage)" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </div>
+</div>
+<div class="full-center" style="padding: 3%;">
+  <img style="width: 10rem" src="assets/logo.png">
+</div>
+
 
 
 <ng-template #spinner>
@@ -38,5 +43,11 @@
       <div></div>
       <div></div>
     </div>
+  </div>
+</ng-template>
+
+<ng-template #noResults>
+  <div class="full-center">
+    No hay coincidencias para "{{searchService.search}}"
   </div>
 </ng-template>
